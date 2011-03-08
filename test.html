@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script src="jquery.yaselect.js"></script>
+    <style>
+      .yaselect-wrap { border: 1px solid #eee; padding: 0.3em; margin: 0.1em; background-color: yellow; width: 120px; }
+      .yaselect-wrap, .yaselect-current { cursor: pointer; }
+      .yaselect-current, .yaselect-wrap, select { width: 300px; }
+      .yaselect-wrap select { font-family: monospace; font-size: 13px; }
+    </style>
+  </head>
+  <body>
+    <script>
+      jQuery(document).ready(function() {
+        jQuery('select').yaselect({ topOffset: 8, tag: 'div' });
+      })
+    </script>
+    <h1>Yet-another select</h1>
+    <p>
+      From: 
+      <select>
+        <option>Singapore</option>
+        <option>Japan</option>
+        <option>Brazil</option>
+        <option>Korea</option>
+        <option>Canada</option>
+        <option>France</option>
+        <option>Indonesia</option>
+        <option>Thailand</option>
+        <option>Maldives</option>
+        <option>United States</option>
+        <option>Malaysia</option>
+      </select>
+    </p>
+    <p>
+      To: 
+      <select>
+        <option>Singapore</option>
+        <option>Japan</option>
+        <option>Brazil</option>
+        <option>Korea</option>
+        <option>Canada</option>
+        <option>France</option>
+        <option>Indonesia</option>
+        <option>Thailand</option>
+        <option>Maldives</option>
+        <option>United States</option>
+        <option>Malaysia</option>
+      </select>
+    </p>
+  </body>
+</html>
