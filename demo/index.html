@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script src="../jquery.yaselect.js"></script>
+    <style>
+      body, select { font-family: "Helvetica"; }
+      label { font-weight: bold; font-size: 1.1em; }
+      .yaselect-wrap { border: 1px solid #eee; border-right: 0; border-radius: 3px; padding: 1.5px 0; margin: 0; background-color: yellow; width: 120px; }
+        .yaselect-wrap.yaselect-close { background: url('googlechrome-arrowdown.png') no-repeat 100% 50%; }
+        .yaselect-wrap.yaselect-open { background: url('googlechrome-arrowup.png') no-repeat 100% 50%; }
+      .yaselect-wrap, .yaselect-current { cursor: pointer; }
+      .yaselect-current, .yaselect-wrap, .yaselect-select { width: 300px; font-size: 16px; }
+      .yaselect-select { margin-top: 0; padding-top: 0; -moz-user-select: none; -webkit-user-select: none; outline: none; }
+    </style>
+  </head>
+  <body>
+    <script>
+      jQuery(document).ready(function() {
+        /* generic script hooking into "select" elements */
+        jQuery('select').change(function(e) {
+          jQuery('#lastvalue').text("Selected value: " + jQuery(this).val());
+        });
+        /* applying "yaselect" on first select element */
+        jQuery('#select1').yaselect({ tag: 'div' });
+      })
+    </script>
+    <h1>Yet-Another [jQuery] Select</h1>
+    <p id="lastvalue">&nbsp;</p>
+    <p>
+      <label for="select1">Styled:</label>
+      <select id="select1">
+        <option>Apple</option>
+        <option>Banana
+        <option>Cherry
+        <option>Date</option>
+        <option>Elephant Apple</option>
+        <option value="6">Fig (6)</option>
+        <option value="7">Grapefruit (7)
+        <option>Honeydew</option>
+        <option>Ice Cream Bean</option>
+        <option>Indian Prune</option>
+        <option>Jackfruit</option>
+      </select>
+    </p>
+    <p>
+      <label for="select2">Native:</label>
+      <select id="select2">
+        <option>Apple</option>
+        <option>Banana
+        <option>Cherry
+        <option>Date</option>
+        <option>Elephant Apple</option>
+        <option value="6">Fig (6)</option>
+        <option value="7">Grapefruit (7)
+        <option>Honeydew</option>
+        <option>Ice Cream Bean</option>
+        <option>Indian Prune</option>
+        <option>Jackfruit</option>
+      </select>
+    </p>
+    <p>
+      Try tab focus, using your arrow keys to select an option, scroll wheel, clicking on the field labels, search-as-you-type (first alphabet-only for windows), etc
+    </p>
+  </body>
+</html>
