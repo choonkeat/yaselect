@@ -121,7 +121,30 @@
 
     <p>yaselect uses the actual <code>select</code> widget for displaying options, after activating it's <code>size</code> attribute. That is it.</p>
 
-    <h2>Markup</h2>
+    <h2>Usage</h2>
+
+    <p>Given a select box,</p>
+
+    <pre><code>
+    &lt;!-- your select tag --&gt;
+    &lt;select style="position: absolute; top: ?px; left: ?px; display: none; " class="yaselect-select" size="?"&gt;
+      &lt;!-- your option tags --&gt;
+    &lt;/select&gt;
+    </code></pre>
+
+    <p>Include jQuery, yaselect script &amp; apply it to your <code>select</code> element</p>
+
+    <pre><code>
+    &lt;script src="jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="jquery.yaselect.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      jQuery('select').yaselect();
+    &lt;/script&gt;
+    </code></pre>
+
+    <h2>Result</h2>
+
+    <p>Your <code>select</code> will become</p>
 
     <pre><code>
     &lt;div class="yaselect-wrap yaselect-?" tabindex="0"&gt;

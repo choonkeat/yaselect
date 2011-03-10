@@ -14,7 +14,26 @@ Was ``iframe`` shims added to manage z-index issues? Is there support for search
 
 yaselect uses the actual ``select`` widget for displaying options, after activating it's ``size`` attribute. That is it.
 
-## Markup
+## Usage
+
+Given a select box,
+
+    <!-- your select tag -->
+    <select style="position: absolute; top: ?px; left: ?px; display: none; " class="yaselect-select" size="?">
+      <!-- your option tags -->
+    </select>
+
+Include jQuery, yaselect script & apply it to your ``select`` element
+
+    <script src="jquery.min.js"></script>
+    <script src="jquery.yaselect.min.js"></script>
+    <script>
+      jQuery('select').yaselect();
+    </script>
+
+## Result
+
+Your ``select`` will become
 
     <div class="yaselect-wrap yaselect-?" tabindex="0">
       <div class="yaselect-current"><!-- current selection --></div>
