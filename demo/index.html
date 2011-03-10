@@ -4,14 +4,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     <script src="../jquery.yaselect.js"></script>
     <style>
+      /* base style */
       body, select { font-family: "Helvetica"; }
       label { font-weight: bold; font-size: 1.1em; }
+      dt, dd { margin-left: 0; padding-left: 0; }
+    </style>
+    <style>
+      /* yaselect styling */
       .yaselect-wrap { border: 1px solid #eee; border-right: 0; border-radius: 3px; padding: 1.5px 0; margin: 0; background-color: yellow; width: 120px; }
-        .yaselect-wrap.yaselect-close { background: url('googlechrome-arrowdown.png') no-repeat 100% 50%; }
-        .yaselect-wrap.yaselect-open { background: url('googlechrome-arrowup.png') no-repeat 100% 50%; }
+      .yaselect-wrap.yaselect-close { background: url('googlechrome-arrowdown.png') no-repeat 100% 50%; }
+      .yaselect-wrap.yaselect-open { background: url('googlechrome-arrowup.png') no-repeat 100% 50%; }
       .yaselect-wrap, .yaselect-current { cursor: pointer; }
       .yaselect-current, .yaselect-wrap, .yaselect-select { width: 300px; font-size: 16px; }
-      .yaselect-select { margin-top: 0; padding-top: 0; -moz-user-select: none; -webkit-user-select: none; outline: none; }
+      .yaselect-select { margin-top: 0; padding-top: 0; }
     </style>
   </head>
   <body>
@@ -19,48 +24,106 @@
       jQuery(document).ready(function() {
         /* generic script hooking into "select" elements */
         jQuery('select').change(function(e) {
-          jQuery('#lastvalue').text("Selected value: " + jQuery(this).val());
+          jQuery('#lastvalue').text(jQuery(this).val());
         });
         /* applying "yaselect" on first select element */
         jQuery('#select1').yaselect({ tag: 'div' });
       })
     </script>
     <h1>Yet-Another [jQuery] Select</h1>
-    <p id="lastvalue">&nbsp;</p>
+    <h2>Demo</h2>
+    <blockquote>
+      <dl>
+        <dt>Last selected value:</dt>
+        <dd id="lastvalue">&nbsp;</dd>
+      </dl>
+      <dl>
+        <dt><label for="select1">Yaselect:</label></dt>
+        <dd>
+          <select id="select1">
+            <option>Apple</option>
+            <option>Banana
+            <option>Cherry
+            <option>Date</option>
+            <option>Elephant Apple</option>
+            <option value="6">Fig (6)</option>
+            <option value="7">Grapefruit (7)
+            <option>Honeydew</option>
+            <option>Ice Cream Bean</option>
+            <option>Indian Prune</option>
+            <option>Jackfruit</option>
+          </select>
+        </dd>
+      </dl>
+      <dl>
+        <dt><label for="select2">Styled select:</label></dt>
+        <dd>
+          <select id="select2" class="yaselect-select">
+            <option>Apple</option>
+            <option>Banana
+            <option>Cherry
+            <option>Date</option>
+            <option>Elephant Apple</option>
+            <option value="6">Fig (6)</option>
+            <option value="7">Grapefruit (7)
+            <option>Honeydew</option>
+            <option>Ice Cream Bean</option>
+            <option>Indian Prune</option>
+            <option>Jackfruit</option>
+          </select>
+        </dd>
+      </dl>
+      <dl>
+        <dt><label for="select3">Un-styled select:</label></dt>
+        <dd>
+          <select id="select3">
+            <option>Apple</option>
+            <option>Banana
+            <option>Cherry
+            <option>Date</option>
+            <option>Elephant Apple</option>
+            <option value="6">Fig (6)</option>
+            <option value="7">Grapefruit (7)
+            <option>Honeydew</option>
+            <option>Ice Cream Bean</option>
+            <option>Indian Prune</option>
+            <option>Jackfruit</option>
+          </select>
+        </dd>
+      </dl>
     <p>
-      <label for="select1">Styled:</label>
-      <select id="select1">
-        <option>Apple</option>
-        <option>Banana
-        <option>Cherry
-        <option>Date</option>
-        <option>Elephant Apple</option>
-        <option value="6">Fig (6)</option>
-        <option value="7">Grapefruit (7)
-        <option>Honeydew</option>
-        <option>Ice Cream Bean</option>
-        <option>Indian Prune</option>
-        <option>Jackfruit</option>
-      </select>
+      Try using your tab key to focus, your arrow keys to select an option, try the scroll wheel, clicking on the field labels, search-as-you-type (first alphabet-only for windows), etc
     </p>
-    <p>
-      <label for="select2">Native:</label>
-      <select id="select2">
-        <option>Apple</option>
-        <option>Banana
-        <option>Cherry
-        <option>Date</option>
-        <option>Elephant Apple</option>
-        <option value="6">Fig (6)</option>
-        <option value="7">Grapefruit (7)
-        <option>Honeydew</option>
-        <option>Ice Cream Bean</option>
-        <option>Indian Prune</option>
-        <option>Jackfruit</option>
-      </select>
-    </p>
-    <p>
-      Try tab focus, using your arrow keys to select an option, scroll wheel, clicking on the field labels, search-as-you-type (first alphabet-only for windows), etc
-    </p>
+    </blockquote>
+
+    <h2>Long</h2>
+
+    <p>Regular "select box styling" scripts uses unnecessary markups like <code>ul</code> &amp; <code>li</code> to render select options. This approach means having to add reams of javascript to create new html elements, copy option values into those elements, manage arrow keys, pass chosen option values back into hidden input fields.</p>
+
+    <p>Was <code>iframe</code> shims added to manage z-index issues? Is there support for search-as-you-type? What if ajax scripts changes the select <code>options</code>?</p>
+
+    <h2>Short</h2>
+
+    <p>yaselect uses the actual <code>select</code> widget for displaying options, after activating it's <code>size</code> attribute. That is it.</p>
+
+    <h2>Markup</h2>
+
+    <pre><code>
+    &lt;div class="yaselect-wrap yaselect-?"&gt;
+      &lt;div class="yaselect-current" tabindex="0"&gt;&lt;!-- current selection --&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- your select tag --&gt;
+    &lt;select style="position: absolute; top: ?px; left: ?px; display: none; " class="yaselect-select" size="?"&gt;
+      &lt;!-- your option tags --&gt;
+    &lt;/select&gt;
+    </code></pre>
+
+    <h2>Homepage</h2>
+
+    <p><a href="http://github.com/choonkeat/yaselect">http://github.com/choonkeat/yaselect</a></p>
+
+    <h2>License</h2>
+
+    <p>Copyright (c) 2011 Chew Choon Keat, released under the MIT license</p>
   </body>
 </html>
