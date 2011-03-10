@@ -1,4 +1,11 @@
 /*
+ * yaselect
+ * is yet-another jquery plugin for making <select> elements stylable by CSS
+ * http://github.com/choonkeat/yaselect
+ *
+ * Copyright (c) 2011 Chew Choon Keat
+ * Released under the MIT license
+ *
  * Options:
  *  topOffset: pixels, default 0
  *  leftOffset: pixels, default 0
@@ -11,10 +18,10 @@ jQuery.fn.yaselect = function(options) {
   this.each(function(index, select) {
     var tag     = options.tag || 'span',
         jselect = jQuery(select).css({position: 'absolute'}).addClass('yaselect-select'),
-        wrap    = jQuery('<' + tag + ' class="yaselect-wrap yaselect-open"><' + tag + ' class="yaselect-current" tabindex="0"></' + tag + '></' + tag + '>'),
+        wrap    = jQuery('<' + tag + ' class="yaselect-wrap yaselect-open" tabindex="0"><' + tag + ' class="yaselect-current"></' + tag + '></' + tag + '>'),
         curr    = wrap.find('.yaselect-current').text(select.value),
         gettext = function() { return jselect.find('option:nth(' + (select.selectedIndex || 0) + ')').text(); },
-        confirm = function(to_focus_curr) { jselect.blur(); curr.text(gettext()); if (to_focus_curr) curr.focus(); };
+        confirm = function(to_focus_wrap) { jselect.blur(); curr.text(gettext()); if (to_focus_wrap) wrap.focus(); };
     jselect.anchor_to_wrapper = function(anchor_top) {
       var tmpwrap  = wrap.wrap('<div style="display:inline;border:0;padding:0;margin:0;"></div>').parent(),
           toffset  = tmpwrap.offset(),
@@ -35,7 +42,7 @@ jQuery.fn.yaselect = function(options) {
     }
     jselect
       .before(wrap)
-      .keydown(function(e) { if (e.which==13) confirm(true); })
+      .keydown(function(e) { if (e.which==13||e.which==32) { e.preventDefault(); confirm(true); } })
       .change(function(e) { curr.text(gettext()); })
       .blur(function(e) { jselect.hide(); wrap.toggleClass('yaselect-open yaselect-close'); })
       .click(function(e) {
@@ -47,7 +54,7 @@ jQuery.fn.yaselect = function(options) {
           confirm(true);
         }
       });
-    curr
+    wrap
       .mousedown(function(e) { jselect.click(); })
       .keydown(function(e) { if (e.which!=9) { e.preventDefault(); jselect.click(); } }); /* preventDefault avoid pagescroll */
     select.size = options.size || 5;

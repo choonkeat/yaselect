@@ -2,21 +2,22 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-    <script src="../jquery.yaselect.js"></script>
+    <script src="../jquery.yaselect.min.js"></script>
     <style>
       /* base style */
       body, select { font-family: "Helvetica"; }
       label { font-weight: bold; font-size: 1.1em; }
       dt, dd { margin-left: 0; padding-left: 0; }
+      .hint { font-size: 0.85em; color: #aaa; margin-left: 1em; }
     </style>
     <style>
       /* yaselect styling */
-      .yaselect-wrap { border: 1px solid #eee; border-right: 0; border-radius: 3px; padding: 1.5px 0; margin: 0; background-color: yellow; width: 120px; }
-      .yaselect-wrap.yaselect-close { background: url('googlechrome-arrowdown.png') no-repeat 100% 50%; }
-      .yaselect-wrap.yaselect-open { background: url('googlechrome-arrowup.png') no-repeat 100% 50%; }
-      .yaselect-wrap, .yaselect-current { cursor: pointer; }
-      .yaselect-current, .yaselect-wrap, .yaselect-select { width: 300px; font-size: 16px; }
+      .yaselect-wrap { border: 1px solid #eee; border-right: 0; border-radius: 3px; padding: 1.5px 0; margin: 0; }
+      .yaselect-wrap, .yaselect-current { cursor: pointer; display: block; }
+      .yaselect-wrap, .yaselect-current, .yaselect-select { width: 300px; font-size: 15px; }
       .yaselect-select { margin-top: 0; padding-top: 0; }
+      .yaselect-close { background: url('googlechrome-arrowdown.png') no-repeat 100% 50%; }
+      .yaselect-open { background: url('googlechrome-arrowup.png') no-repeat 100% 50%; }
     </style>
   </head>
   <body>
@@ -27,18 +28,20 @@
           jQuery('#lastvalue').text(jQuery(this).val());
         });
         /* applying "yaselect" on first select element */
-        jQuery('#select1').yaselect({ tag: 'div' });
+        jQuery('#select1').yaselect();
       })
     </script>
     <h1>Yet-Another [jQuery] Select</h1>
     <h2>Demo</h2>
+    <p>
+      Try interacting with your tab key to focus, your arrow keys to select an option, try the scroll wheel, clicking on the field labels, search-as-you-type (first alphabet-only for windows), etc
+    </p>
     <blockquote>
       <dl>
-        <dt>Last selected value:</dt>
-        <dd id="lastvalue">&nbsp;</dd>
-      </dl>
-      <dl>
-        <dt><label for="select1">Yaselect:</label></dt>
+        <dt>
+          <label for="select1">Yaselect</label>
+           <span class="hint">modified by <code>jQuery('#select1').yaselect();</code></span>
+        </dt>
         <dd>
           <select id="select1">
             <option>Apple</option>
@@ -56,7 +59,10 @@
         </dd>
       </dl>
       <dl>
-        <dt><label for="select2">Styled select:</label></dt>
+        <dt>
+          <label for="select2">Styled select</label>
+          <span class="hint">carries the same CSS styles as the first</span>
+        </dt>
         <dd>
           <select id="select2" class="yaselect-select">
             <option>Apple</option>
@@ -74,7 +80,10 @@
         </dd>
       </dl>
       <dl>
-        <dt><label for="select3">Un-styled select:</label></dt>
+        <dt>
+          <label for="select3">Un-styled select</label>
+          <span class="hint">is un-styled</span>
+        </dt>
         <dd>
           <select id="select3">
             <option>Apple</option>
@@ -91,9 +100,15 @@
           </select>
         </dd>
       </dl>
-    <p>
-      Try using your tab key to focus, your arrow keys to select an option, try the scroll wheel, clicking on the field labels, search-as-you-type (first alphabet-only for windows), etc
-    </p>
+      <dl>
+        <dt>
+          <label>Last selected value</label>
+          <span class="hint">
+            jQuery is making all <code>select</code> elements report their value here <code>onchange</code>
+          </span>
+        </dt>
+        <dd id="lastvalue"><em>-</em></dd>
+      </dl>
     </blockquote>
 
     <h2>Long</h2>
