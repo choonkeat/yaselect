@@ -16,8 +16,8 @@ yaselect uses the actual ``select`` widget for displaying options, after activat
 
 ## Markup
 
-    <div class="yaselect-wrap yaselect-?">
-      <div class="yaselect-current" tabindex="0"><!-- current selection --></div>
+    <div class="yaselect-wrap yaselect-?" tabindex="0">
+      <div class="yaselect-current"><!-- current selection --></div>
     </div>
     <!-- your select tag -->
     <select style="position: absolute; top: ?px; left: ?px; display: none; " class="yaselect-select" size="?">
