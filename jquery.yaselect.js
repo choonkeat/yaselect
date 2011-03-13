@@ -15,7 +15,7 @@
  */
 jQuery.fn.yaselect = function(options) {
   options = options || {};
-  this.each(function(index, select) {
+  return this.each(function(index, select) {
     var tag     = options.tag || 'span',
         jselect = jQuery(select).css({position: 'absolute'}).addClass('yaselect-select'),
         wrap    = jQuery('<' + tag + ' class="yaselect-wrap yaselect-open" tabindex="0"><' + tag + ' class="yaselect-current"></' + tag + '></' + tag + '>'),
