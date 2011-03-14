@@ -46,7 +46,7 @@ jQuery.fn.yaselect = function(options) {
       .appendTo(anchor);
     wrap
       .mousedown(function(e) { jselect.click(); })
-      .keydown(function(e) { if (e.which!=9) { e.preventDefault(); jselect.click(); } }); /* preventDefault avoid pagescroll */
+      .keydown(function(e) { if ([13,32,37,38,39,40].indexOf(e.which) != -1) { e.preventDefault(); jselect.click(); } }); /* preventDefault avoid pagescroll */
     select.size = options.size || 5;
     confirm();
   });
