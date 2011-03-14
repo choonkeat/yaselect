@@ -20,7 +20,7 @@ jQuery.fn.yaselect = function(options) {
         anchor  = wrap.wrap('<div class="yaselect-anchor" style="position:relative;"></div>').parent(),
         curr    = wrap.find('.yaselect-current').text(select.value),
         gettext = function() { return jselect.find('option:nth(' + (select.selectedIndex || 0) + ')').text(); },
-        confirm = function(to_focus_wrap) { jselect.blur(); curr.text(gettext()); jselect.css({top: wrap.height()}); if (to_focus_wrap) wrap.focus(); };
+        confirm = function(to_focus_wrap) { jselect.blur(); curr.text(gettext()); jselect.css({top: wrap.outerHeight()}); if (to_focus_wrap) wrap.focus(); };
     if (options.hoverOnly || window.navigator && navigator.userAgent.match(/iphone|ipod|ipad/i)) {
       wrap.toggleClass('yaselect-open yaselect-close');
       return jselect /* becomes invisible and is placed above wrapper to receive screen tap -- triggering native <select> */
