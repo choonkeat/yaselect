@@ -35,13 +35,15 @@ Include jQuery, yaselect script & apply it to your ``select`` element
 
 Your ``select`` will become
 
-    <div class="yaselect-wrap yaselect-?" tabindex="0">
-      <div class="yaselect-current"><!-- current selection --></div>
+    <div class="yaselect-anchor" style="position: relative;">
+      <div class="yaselect-wrap yaselect-?" tabindex="0">
+        <div class="yaselect-current"><!-- current selection --></div>
+      </div>
+      <!-- your select tag -->
+      <select style="position: absolute; top: 0px; left: 0px; z-index: 1; display: none; " class="yaselect-select" size="?">
+        <!-- your option tags -->
+      </select>
     </div>
-    <!-- your select tag -->
-    <select style="position: absolute; top: ?px; left: ?px; display: none; " class="yaselect-select" size="?">
-      <!-- your option tags -->
-    </select>
 
 ## Homepage
 
