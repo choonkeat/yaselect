@@ -34,21 +34,24 @@ jQuery.fn.yaselect = function(options) {
       return this.css(newstyle).css(anchor_top ? topstyle : botstyle);
     };
     if (options.hoverOnly || window.navigator && navigator.userAgent.match(/iphone|ipod|ipad/i)) {
+      jselect.parents('form').submit(function(e) { jselect.appendTo(wrap); })
       return jselect /* becomes invisible and is placed above wrapper to receive screen tap -- triggering native <select> */
         .before(wrap.toggleClass('yaselect-open yaselect-close'))
         .css({opacity: 0.001})
         .change(function(e) { curr.text(gettext()); })
-        .anchor_to_wrapper('anchor to top');
+        .anchor_to_wrapper('anchor to top')
+        .appendTo(document.body);
     }
     jselect
       .before(wrap)
+      .appendTo(wrap)
       .keydown(function(e) { if (e.which==13||e.which==32) { e.preventDefault(); confirm(true); } })
       .change(function(e) { curr.text(gettext()); })
-      .blur(function(e) { jselect.hide(); wrap.toggleClass('yaselect-open yaselect-close'); })
+      .blur(function(e) { jselect.hide(); wrap.toggleClass('yaselect-open yaselect-close'); setTimeout(function() { jselect.appendTo(wrap); }); })
       .click(function(e) {
         if (jselect.is(':hidden')) {
           wrap.toggleClass('yaselect-open yaselect-close');
-          jselect.show().anchor_to_wrapper();
+          jselect.show().anchor_to_wrapper().appendTo(document.body);
           setTimeout(function() { jselect.focus(); }); /* avoid trampling confusion with triggered blur */
         } else {
           confirm(true);
