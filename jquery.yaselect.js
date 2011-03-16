@@ -8,12 +8,13 @@
  *
  */
 jQuery.fn.yaselect = function (config) {
-	var defaults = 
-	{ 
+	var defaults =
+	{
 		hoverOnly: false,
 		topOffset: 0,
 		leftOffset: 0,
-		useSelectCss: 
+		size: 5,
+		useSelectCss:
 		{
 			reuseWidth: false,
 			reuseHeight: false,
@@ -28,9 +29,18 @@ jQuery.fn.yaselect = function (config) {
 				wrap = jQuery('<div class="yaselect-wrap yaselect-open" tabindex="0"><div class="yaselect-current"></div></div>'),
 				anchor = wrap.wrap('<div class="yaselect-anchor" style="position:relative;"></div>').parent(),
 				curr = wrap.find('.yaselect-current').text(select.value),
-				gettext = function () { return jselect.find('option:nth(' + (select.selectedIndex || 0) + ')').text(); },
-				confirm = function (to_focus_wrap) { jselect.blur(); curr.text(gettext()); jselect.css({ top: wrap.outerHeight() }); if (to_focus_wrap) wrap.focus(); };
-		if (config.hoverOnly || window.navigator && navigator.userAgent.match(/iphone|ipod|ipad/i)) {
+				gettext = function () {
+					return jselect.find('option:nth(' + (select.selectedIndex || 0) + ')').text();
+				},
+				confirm = function (to_focus_wrap) {
+					jselect.blur();
+					curr.text(gettext());
+					jselect.css({ top: wrap.outerHeight() });
+					if (to_focus_wrap) {
+						wrap.focus();
+					}
+				};
+		if (config.hoverOnly || (window.navigator && navigator.userAgent.match(/iphone|ipod|ipad/i))) {
 			wrap.toggleClass('yaselect-open yaselect-close');
 			return jselect /* becomes invisible and is placed above wrapper to receive screen tap -- triggering native <select> */
 				.before(anchor)
@@ -40,7 +50,7 @@ jQuery.fn.yaselect = function (config) {
 		}
 		jselect
 			.before(anchor)
-			.keydown(function (e) { if (e.which == 13 || e.which == 32) { e.preventDefault(); confirm(true); } })
+			.keydown(function (e) { if (e.which === 13 || e.which === 32) { e.preventDefault(); confirm(true); } })
 			.change(function (e) { curr.text(gettext()); })
 			.blur(function (e) { jselect.hide(); wrap.toggleClass('yaselect-open yaselect-close'); })
 			.click(function (e) {
@@ -55,16 +65,16 @@ jQuery.fn.yaselect = function (config) {
 			.appendTo(anchor);
 		wrap
 			.mousedown(function (e) { jselect.click(); })
-			.keydown(function (e) { if ([13, 32, 37, 38, 39, 40].indexOf(e.which) != -1) { e.preventDefault(); jselect.click(); } }); /* preventDefault avoid pagescroll */
-		
+			.keydown(function (e) { if ([13, 32, 37, 38, 39, 40].indexOf(e.which) !== -1) { e.preventDefault(); jselect.click(); } }); /* preventDefault avoid pagescroll */
+
 		if (config.useSelectCss.reuseWidth) {
 			anchor.width(jQuery(select).outerWidth() + config.useSelectCss.addWidthToOriginal);
-		} 
+		}
 		if (config.useSelectCss.reuseHeight) {
 			anchor.height(jQuery(select).outerHeight() + config.useSelectCss.addHeightToOriginal);
 		}
 
-		select.size = config.size || 5;
+		select.size = config.size;
 		confirm();
 	});
-}
+};
