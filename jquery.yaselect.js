@@ -68,10 +68,12 @@ jQuery.fn.yaselect = function (config) {
 			.keydown(function (e) { if ([13, 32, 37, 38, 39, 40].indexOf(e.which) !== -1) { e.preventDefault(); jselect.click(); } }); /* preventDefault avoid pagescroll */
 
 		if (config.useSelectCss.reuseWidth) {
-			anchor.width(jQuery(select).outerWidth() + config.useSelectCss.addWidthToOriginal);
+			anchor.width(jselect.outerWidth() + config.useSelectCss.addWidthToOriginal);
+			jselect.width(anchor.width());
 		}
 		if (config.useSelectCss.reuseHeight) {
-			anchor.height(jQuery(select).outerHeight() + config.useSelectCss.addHeightToOriginal);
+			anchor.height(jselect.outerHeight() + config.useSelectCss.addHeightToOriginal);
+			jselect.height(anchor.height());
 		}
 
 		select.size = config.size;
