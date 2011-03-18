@@ -18,8 +18,8 @@ jQuery.fn.yaselect = function(options) {
     var jselect = jQuery(select).css({position:'absolute',top:0,left:0,zIndex:1}).addClass('yaselect-select'),
         wrap    = jQuery('<div class="yaselect-wrap yaselect-open" tabindex="0"><div class="yaselect-current"></div></div>'),
         anchor  = wrap.wrap('<div class="yaselect-anchor" style="position:relative;"></div>').parent(),
-        curr    = wrap.find('.yaselect-current').text(select.value),
         gettext = function() { return jselect.find('option:nth(' + (select.selectedIndex || 0) + ')').text(); },
+        curr    = wrap.find('.yaselect-current').text(gettext()),
         confirm = function(to_focus_wrap) { jselect.blur(); curr.text(gettext()); jselect.css({top: wrap.outerHeight()}); if (to_focus_wrap) wrap.focus(); };
     if (options.hoverOnly || window.navigator && navigator.userAgent.match(/iphone|ipod|ipad/i)) {
       wrap.toggleClass('yaselect-open yaselect-close');
