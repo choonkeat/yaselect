@@ -18,32 +18,49 @@ yaselect uses the actual ``select`` widget for displaying options, after activat
 
 Given a select box,
 
-    <!-- your select tag -->
-    <select style="position: absolute; top: ?px; left: ?px; display: none; " class="yaselect-select" size="?">
-      <!-- your option tags -->
-    </select>
+```html
+<!-- your select tag -->
+<select style="position: absolute; top: ?px; left: ?px; display: none; " class="yaselect-select" size="?">
+  <!-- your option tags -->
+</select>
+```
 
 Include jQuery, yaselect script & apply it to your ``select`` element
 
-    <script src="jquery.min.js"></script>
-    <script src="jquery.yaselect.min.js"></script>
-    <script>
-      jQuery('select').yaselect();
-    </script>
+```html
+<script src="jquery.min.js"></script>
+<script src="jquery.yaselect.min.js"></script>
+<script>
+  jQuery('select').yaselect();
+</script>
+```
 
 ## Result
 
 Your ``select`` will become
 
-    <div class="yaselect-anchor" style="position: relative;">
-      <div class="yaselect-wrap yaselect-?" tabindex="0">
-        <div class="yaselect-current"><!-- current selection --></div>
-      </div>
-      <!-- your select tag -->
-      <select style="position: absolute; top: 0px; left: 0px; z-index: 1; display: none; " class="yaselect-select" size="?">
-        <!-- your option tags -->
-      </select>
-    </div>
+```html
+<div class="yaselect-anchor" style="position: relative;">
+  <div class="yaselect-wrap yaselect-?" tabindex="0">
+    <div class="yaselect-current"><!-- current selection --></div>
+  </div>
+  <!-- your select tag -->
+  <select style="position: absolute; top: 0px; left: 0px; z-index: 1; display: none; " class="yaselect-select" size="?">
+    <!-- your option tags -->
+  </select>
+</div>
+```
+`
+## Bonus tip
+
+If you prefer your ``select`` to automatically resize to longest option element, you can simply do
+
+```javascript
+$('.yaselect-anchor').each(function(){
+  $(this).width($('select', this).width()+20); // 20px padding for arrow, adjust to match CSS
+});
+```
+This tip is provided by @spaceninja in #6
 
 ## Homepage
 
